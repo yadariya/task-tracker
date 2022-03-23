@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const LandingWrapperStyled = styled.div`
   box-sizing: border-box;
+  font-size: 1.2em;
   height: 100%;
 `;
 

@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 import {
   InputStyled, InputLabelStyled, InputBlock, InputerrorStyled, TextAreaStyled,
 } from '../../components/Form/Input';
-import BoxStyled from '../../components/Layout/Box.styled';
+import { BoxStyled } from '../../components/Layout/Box.styled';
 import PageHeadingStyled from '../../components/Typography/PageHeading';
 import {
   FormStyled, SubmitStyled, TodoFormHeaderStyled, TodoFormWrapperStyled,

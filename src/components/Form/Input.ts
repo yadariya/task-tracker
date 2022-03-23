@@ -37,3 +37,13 @@ export const TextAreaStyled = styled.textarea`
   max-width: 100%;
   min-width: 100%;
 `;
+
+export const LoginInputStyled = styled.input`
+  border: 0.15em solid rgba(0, 0, 0, 0.5);
+  background-color: transparent;
+  border-radius: 0.5em; 
+  padding: 1em;
+  width: 100%;
+  height: 40px;
+  font-size: 1em;
+`;

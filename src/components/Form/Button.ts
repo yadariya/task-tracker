@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ButtonStyled = styled.button`
+export const ButtonStyled = styled.button`
   height: 35px;
   min-width: 100px;
   background-color: #4925E9;
@@ -15,4 +15,18 @@ const ButtonStyled = styled.button`
   }
 `;
 
-export default ButtonStyled;
+export const LoginButtonStyled = styled.button`
+  padding: 0.75em 1.5em;
+  background-color: #4925E9;
+  text-transform: uppercase;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1em;
+
+  &:disabled {
+    background-color: rgba(73, 37, 233, 0.5);
+    cursor: not-allowed;
+  }
+`;
