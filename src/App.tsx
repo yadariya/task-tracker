@@ -11,30 +11,32 @@ import TodoForm from './pages/TodoForm/TodoForm';
 import { RootState } from './store/store';
 
 const App: React.FC = () => {
-  const isLoggedIn = useSelector((state: RootState) => state.authentication.access_token !== null);
-
-  if (!isLoggedIn) {
-    return (
-      <LoginLanding>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="*" element={<Navigate to="/login"/>} />
-        </Routes>
-      </LoginLanding>
+    const isLoggedIn = useSelector(
+        (state: RootState) => state.authentication.access_token !== null
     );
-  }
 
-  return (
-    <MainLanding>
-      <Routes>
-        <Route path="/" element={<List />} />
-        <Route path="/new-todo" element={<TodoForm />} />
-        <Route path="/edit-todo/:id" element={<TodoForm />} />
-        <Route path="/settings" element={<Settings />} />
-      </Routes>
-    </MainLanding>
-  );
+    if (!isLoggedIn) {
+        return (
+            <LoginLanding>
+                <Routes>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="*" element={<Navigate to="/login" />} />
+                </Routes>
+            </LoginLanding>
+        );
+    }
+
+    return (
+        <MainLanding>
+            <Routes>
+                <Route path="/" element={<List />} />
+                <Route path="/new-todo" element={<TodoForm />} />
+                <Route path="/edit-todo/:id" element={<TodoForm />} />
+                <Route path="/settings" element={<Settings />} />
+            </Routes>
+        </MainLanding>
+    );
 };
 
 export default App;

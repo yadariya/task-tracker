@@ -1,12 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface ColumnProps {
-  gap: string;
+    gap: string;
 }
 
 export const CenteredColumn = styled.div<ColumnProps>`
-  display: flex;
-  gap: ${p => p.gap};
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    gap: ${(p) => p.gap};
+    flex-direction: column;
+    align-items: center;
 `;
