@@ -1,7 +1,10 @@
-import React from 'react'
+import LoginForm from '../../../components/forms/LoginForm';
+import { TransparentBoxStyled } from '../../../components/Layout/Box.styled';
 
 export default function Login() {
-  return (
-    <div>Login</div>
-  )
+    return (
+        <TransparentBoxStyled>
+            <LoginForm />
+        </TransparentBoxStyled>
+    );
 }

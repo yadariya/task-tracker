@@ -1,7 +1,10 @@
-import React from 'react'
+import { TransparentBoxStyled } from '../../../components/Layout/Box.styled';
+import RegisterForm from '../../../components/forms/RegisterForm';
 
 export default function Register() {
-  return (
-    <div>Register</div>
-  )
+    return (
+        <TransparentBoxStyled>
+            <RegisterForm />
+        </TransparentBoxStyled>
+    );
 }
