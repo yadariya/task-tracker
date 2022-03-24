@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import LoginFormFootnote from './LoginFormFootnote';
 
-const LoginFormError = styled(LoginFormFootnote)`
+const LoginFormErrorStyled = styled(LoginFormFootnote)`
     color: #f00;
     font-style: italic;
     
@@ -10,4 +10,4 @@ const LoginFormError = styled(LoginFormFootnote)`
     }
 `;
 
-export default LoginFormError;
+export default LoginFormErrorStyled;

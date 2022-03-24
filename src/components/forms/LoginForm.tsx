@@ -1,37 +1,48 @@
-import React, { ChangeEvent, FormEvent } from 'react';
-import { Link, NavigateFunction } from 'react-router-dom';
+import React, { ChangeEvent, FormEvent, ReactElement } from 'react';
+import { Link, Navigate, NavigateFunction } from 'react-router-dom';
 import { LoginInputStyled } from '../Form/Input';
 import { LoginButtonStyled } from '../Form/Button';
 import { CenteredColumn } from '../Layout/CenteredColumn.styled';
 import LoginFormHeading from '../Typography/LoginFormHeading';
 import LoginFormFootnote from '../Typography/LoginFormFootnote';
 import { logIn } from '../../data/slices/authenticationSlice';
-import LoginFormError from '../Typography/LoginFormError';
-import { useSelector } from 'react-redux';
-import { RootState, store } from '../../store/store';
+import LoginFormErrorStyled from '../Typography/LoginFormError';
+import { store } from '../../store/store';
 
 interface AuthResult {
     detail: string | undefined;
     access_token: string | undefined;
 }
 
-class LoginForm extends React.Component<{ navigate: NavigateFunction }> {
+interface LoginFormState {
+    username: string;
+    password: string;
+    error: string;
+}
+
+class LoginForm extends React.Component<{}, LoginFormState> {
     constructor(props: any) {
         super(props);
         this.state = {
             username: '',
             password: '',
+            error: '',
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        store.subscribe(this.render.bind(this));
     }
 
     handleChange(event: ChangeEvent<HTMLInputElement>) {
         const target = event.target;
-        const name = target.name;
+        const name = target.name as 'username' | 'password';
+        if (!name) {
+            return;
+        }
+
         this.setState({
             [name]: target.value,
-        });
+        } as Pick<LoginFormState, keyof LoginFormState>);
     }
 
     async handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -47,16 +58,19 @@ class LoginForm extends React.Component<{ navigate: NavigateFunction }> {
 
     handleAuth(auth: AuthResult) {
         if (auth.access_token) {
-            logIn(auth.access_token);
-            this.props.navigate('/');
+            store.dispatch(logIn(auth.access_token));
             return;
         }
 
-        console.error(auth.detail);
+        this.setState({
+            error: auth.detail || '',
+        });
     }
 
     render() {
-        console.log(store.getState().authentication.access_token || 'no token');
+        if (store.getState().authentication.access_token !== null) {
+            return <Navigate to="/" />;
+        }
         return (
             <form onSubmit={this.handleSubmit}>
                 <CenteredColumn gap="1em">
@@ -75,6 +89,9 @@ class LoginForm extends React.Component<{ navigate: NavigateFunction }> {
                             name="password"
                         />
                     </CenteredColumn>
+                    <LoginFormErrorStyled>
+                        {this.state.error}
+                    </LoginFormErrorStyled>
                     <LoginButtonStyled type="submit">Login</LoginButtonStyled>
                     <LoginFormFootnote>
                         <p>Don't have an account?</p>

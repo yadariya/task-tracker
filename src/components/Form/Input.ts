@@ -40,10 +40,16 @@ export const TextAreaStyled = styled.textarea`
 
 export const LoginInputStyled = styled.input`
     border: 0.15em solid rgba(0, 0, 0, 0.5);
+    color: #000;
     background-color: transparent;
     border-radius: 0.5em;
     padding: 1em;
     width: 100%;
     height: 40px;
     font-size: 1em;
+
+    &:disabled {
+        background-color: rgba(0, 0, 0, 0.3);
+        color: rgba(0, 0, 0, 0.7);
+    }
 `;

@@ -30,6 +30,8 @@ const App: React.FC = () => {
     return (
         <MainLayout>
             <Routes>
+                <Route path="/login" element={<Navigate to="/" />} />
+                <Route path="/register" element={<Navigate to="/" />} />
                 <Route path="/" element={<List />} />
                 <Route path="/new-todo" element={<TodoForm />} />
                 <Route path="/edit-todo/:id" element={<TodoForm />} />

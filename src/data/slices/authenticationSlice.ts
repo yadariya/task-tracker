@@ -13,10 +13,10 @@ export const authenticationSlice = createSlice({
     initialState,
     reducers: {
         logIn: (state, action: PayloadAction<string>) => {
-            state.access_token = action.payload;
+            return { ...state, access_token: action.payload }
         },
         logOut: (state) => {
-            state.access_token = null;
+            return { ...state, access_token: null }
         },
     },
 });
