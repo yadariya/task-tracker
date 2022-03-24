@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const LayoutWrapperStyled = styled.div`
     box-sizing: border-box;
     font-size: 1.2em;
-    height: 100%;
+    min-height: 100%;
 `;
 
 export const SidebarStyled = styled.div`

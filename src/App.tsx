@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import LoginLanding from './components/Layout/LoginLanding';
-import MainLanding from './components/Layout/MainLanding';
+import LoginLayout from './components/Layout/LoginLayout';
+import MainLayout from './components/Layout/MainLayout';
 import Login from './pages/authentication/Login/Login';
 import Register from './pages/authentication/Register/Register';
 import List from './pages/List/List';
@@ -17,25 +17,25 @@ const App: React.FC = () => {
 
     if (!isLoggedIn) {
         return (
-            <LoginLanding>
+            <LoginLayout>
                 <Routes>
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="*" element={<Navigate to="/login" />} />
                 </Routes>
-            </LoginLanding>
+            </LoginLayout>
         );
     }
 
     return (
-        <MainLanding>
+        <MainLayout>
             <Routes>
                 <Route path="/" element={<List />} />
                 <Route path="/new-todo" element={<TodoForm />} />
                 <Route path="/edit-todo/:id" element={<TodoForm />} />
                 <Route path="/settings" element={<Settings />} />
             </Routes>
-        </MainLanding>
+        </MainLayout>
     );
 };
 
