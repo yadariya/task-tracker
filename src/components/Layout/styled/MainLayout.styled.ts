@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LandingWrapperStyled = styled.div`
+export const LayoutWrapperStyled = styled.div`
   box-sizing: border-box;
   font-size: 1.2em;
   height: 100%;
@@ -18,7 +18,7 @@ export const SidebarStyled = styled.div`
   padding-top: 20px;
 `;
 
-export const LandingContentsStyled = styled.div`
+export const LayoutContentsStyled = styled.div`
   margin-left: 284px;
   padding: 0;
   padding-top: 100px;

@@ -1,11 +1,11 @@
 import React from 'react';
-import { LandingContentsStyled, LandingWrapperStyled, SidebarStyled } from './styled/MainLanding.styled';
+import { LayoutContentsStyled, LayoutWrapperStyled, SidebarStyled } from './styled/MainLayout.styled';
 
-const MainLanding: React.FC = ({ children }) => (
-  <LandingWrapperStyled>
+const MainLayout: React.FC = ({ children }) => (
+  <LayoutWrapperStyled>
     <SidebarStyled />
-    <LandingContentsStyled>{children}</LandingContentsStyled>
-  </LandingWrapperStyled>
+    <LayoutContentsStyled>{children}</LayoutContentsStyled>
+  </LayoutWrapperStyled>
 );
 
-export default MainLanding;
+export default MainLayout;

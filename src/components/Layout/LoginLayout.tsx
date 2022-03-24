@@ -1,15 +1,15 @@
 import React from 'react';
 import { CenteredColumn } from './CenteredColumn.styled';
 import { BigLogo } from '../Logo/Logo';
-import { LandingWrapperStyled } from '../Layout/styled/LoginLanding.styled';
+import { LayoutWrapperStyled } from './styled/LoginLayout.styled';
 
-const LoginLanding: React.FC = ({ children }) => (
-  <LandingWrapperStyled>
+const LoginLayout: React.FC = ({ children }) => (
+  <LayoutWrapperStyled>
     <CenteredColumn gap="2em">
       <BigLogo/>
       {children}
     </CenteredColumn>
-  </LandingWrapperStyled>
+  </LayoutWrapperStyled>
 );
 
-export default LoginLanding;
+export default LoginLayout;
