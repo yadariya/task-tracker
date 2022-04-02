@@ -11,34 +11,32 @@ import TodoForm from './pages/TodoForm/TodoForm';
 import { RootState } from './store/store';
 
 const App: React.FC = () => {
-    const isLoggedIn = useSelector(
-        (state: RootState) => state.authentication.access_token !== null
-    );
+  const isLoggedIn = useSelector((state: RootState) => state.authentication.accessToken !== null);
 
-    if (!isLoggedIn) {
-        return (
-            <LoginLayout>
-                <Routes>
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="*" element={<Navigate to="/login" />} />
-                </Routes>
-            </LoginLayout>
-        );
-    }
-
+  if (!isLoggedIn) {
     return (
-        <MainLayout>
-            <Routes>
-                <Route path="/login" element={<Navigate to="/" />} />
-                <Route path="/register" element={<Navigate to="/" />} />
-                <Route path="/" element={<List />} />
-                <Route path="/new-todo" element={<TodoForm />} />
-                <Route path="/edit-todo/:id" element={<TodoForm />} />
-                <Route path="/settings" element={<Settings />} />
-            </Routes>
-        </MainLayout>
+      <LoginLayout>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="*" element={<Navigate to="/login" />} />
+        </Routes>
+      </LoginLayout>
     );
+  }
+
+  return (
+    <MainLayout>
+      <Routes>
+        <Route path="/login" element={<Navigate to="/" />} />
+        <Route path="/register" element={<Navigate to="/" />} />
+        <Route path="/" element={<List />} />
+        <Route path="/new-todo" element={<TodoForm />} />
+        <Route path="/edit-todo/:id" element={<TodoForm />} />
+        <Route path="/settings" element={<Settings />} />
+      </Routes>
+    </MainLayout>
+  );
 };
 
 export default App;

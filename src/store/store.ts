@@ -3,10 +3,10 @@ import authenticationReducer from '../data/slices/authenticationSlice';
 import todosReducer from '../data/slices/todos/todosSlice';
 
 export const store = configureStore({
-    reducer: {
-        authentication: authenticationReducer,
-        todos: todosReducer,
-    },
+  reducer: {
+    authentication: authenticationReducer,
+    todos: todosReducer,
+  },
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

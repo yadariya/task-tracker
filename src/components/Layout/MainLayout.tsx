@@ -1,15 +1,15 @@
 import React from 'react';
 import {
-    LayoutContentsStyled,
-    LayoutWrapperStyled,
-    SidebarStyled,
+  LayoutContentsWrapperStyled,
+  LayoutWrapperStyled,
+  SidebarStyled,
 } from './styled/MainLayout.styled';
 
 const MainLayout: React.FC = ({ children }) => (
-    <LayoutWrapperStyled>
-        <SidebarStyled />
-        <LayoutContentsStyled>{children}</LayoutContentsStyled>
-    </LayoutWrapperStyled>
+  <LayoutWrapperStyled>
+    <SidebarStyled />
+    <LayoutContentsWrapperStyled>{children}</LayoutContentsWrapperStyled>
+  </LayoutWrapperStyled>
 );
 
 export default MainLayout;
