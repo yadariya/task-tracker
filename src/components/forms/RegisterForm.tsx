@@ -2,7 +2,7 @@ import React, { ChangeEvent, FormEvent, RefObject } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { LoginInputStyled } from '../Form/Input';
 import { LoginButtonStyled } from '../Form/Button';
-import { CenteredColumn } from '../Layout/CenteredColumn.styled';
+import { FlexColumn } from '../Layout/Flexbox.styled';
 import LoginFormHeading from '../Typography/LoginFormHeading';
 import LoginFormFootnote from '../Typography/LoginFormFootnote';
 import { store } from '../../store/store';
@@ -115,9 +115,9 @@ class RegisterForm extends React.Component<{}, RegisterFormState> {
     }
     return (
       <form onSubmit={this.handleSubmit}>
-        <CenteredColumn gap="1em">
+        <FlexColumn gap="1em" align="center">
           <LoginFormHeading>Sign Up</LoginFormHeading>
-          <CenteredColumn gap="0.25em">
+          <FlexColumn gap="0.25em">
             <LoginInputStyled
               onChange={this.handleChange}
               placeholder="Email"
@@ -150,7 +150,7 @@ class RegisterForm extends React.Component<{}, RegisterFormState> {
               name="confirmation"
               disabled
             />
-          </CenteredColumn>
+          </FlexColumn>
           <LoginFormErrorStyled>{this.state.error}</LoginFormErrorStyled>
           <LoginButtonStyled type="submit">Sign up</LoginButtonStyled>
           <LoginFormFootnote>
@@ -159,7 +159,7 @@ class RegisterForm extends React.Component<{}, RegisterFormState> {
               <Link to="/login">Click to sign in</Link>
             </p>
           </LoginFormFootnote>
-        </CenteredColumn>
+        </FlexColumn>
       </form>
     );
   }

@@ -5,15 +5,15 @@ export interface AuthenticationState {
 }
 
 const initialState: AuthenticationState = {
-  accessToken: 'null',
+  accessToken: null,
 };
 
 export const authenticationSlice = createSlice({
   name: 'authentication',
   initialState,
   reducers: {
-    logIn: (state, action: PayloadAction<string>) => ({ ...state, access_token: action.payload }),
-    logOut: (state) => ({ ...state, access_token: null }),
+    logIn: (state, action: PayloadAction<string>) => ({ ...state, accessToken: action.payload }),
+    logOut: (state) => ({ ...state, accessToken: null }),
   },
 });
 

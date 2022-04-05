@@ -1,15 +1,26 @@
 import React from 'react';
 import { LogoFont, BigLogoFont } from '../Typography/Logo';
-import { LogoWrapper } from './styled/Logo.styled';
+import LogoIcon from './LogoIcon';
+import { LogoIconWrapper, LogoWrapper } from './styled/Logo.styled';
 
 export const Logo: React.FC = () => (
   <LogoFont>
-    <LogoWrapper>TaskManager</LogoWrapper>
+    <LogoWrapper>
+      <LogoIconWrapper fill="#fff">
+        <LogoIcon />
+      </LogoIconWrapper>
+      <div>TaskManager</div>
+    </LogoWrapper>
   </LogoFont>
 );
 
 export const BigLogo: React.FC = () => (
   <BigLogoFont>
-    <LogoWrapper>TaskManager</LogoWrapper>
+    <LogoWrapper>
+      <LogoIconWrapper fill="#000">
+        <LogoIcon />
+      </LogoIconWrapper>
+      <div>TaskManager</div>
+    </LogoWrapper>
   </BigLogoFont>
 );

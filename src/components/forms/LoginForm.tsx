@@ -2,7 +2,7 @@ import React, { ChangeEvent, FormEvent, ReactElement } from 'react';
 import { Link, Navigate, NavigateFunction } from 'react-router-dom';
 import { LoginInputStyled } from '../Form/Input';
 import { LoginButtonStyled } from '../Form/Button';
-import { CenteredColumn } from '../Layout/CenteredColumn.styled';
+import { FlexColumn } from '../Layout/Flexbox.styled';
 import LoginFormHeading from '../Typography/LoginFormHeading';
 import LoginFormFootnote from '../Typography/LoginFormFootnote';
 import { logIn } from '../../data/slices/authenticationSlice';
@@ -73,9 +73,9 @@ class LoginForm extends React.Component<{}, LoginFormState> {
     }
     return (
       <form onSubmit={this.handleSubmit}>
-        <CenteredColumn gap="1em">
+        <FlexColumn gap="1em" align="center">
           <LoginFormHeading>Sign In</LoginFormHeading>
-          <CenteredColumn gap="0.25em">
+          <FlexColumn gap="0.25em">
             <LoginInputStyled
               onChange={this.handleChange}
               placeholder="Username"
@@ -88,7 +88,7 @@ class LoginForm extends React.Component<{}, LoginFormState> {
               type="password"
               name="password"
             />
-          </CenteredColumn>
+          </FlexColumn>
           <LoginFormErrorStyled>{this.state.error}</LoginFormErrorStyled>
           <LoginButtonStyled type="submit">Login</LoginButtonStyled>
           <LoginFormFootnote>
@@ -97,7 +97,7 @@ class LoginForm extends React.Component<{}, LoginFormState> {
               <Link to="/register">Click to sign up</Link>
             </p>
           </LoginFormFootnote>
-        </CenteredColumn>
+        </FlexColumn>
       </form>
     );
   }
