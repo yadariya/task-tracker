@@ -8,8 +8,10 @@ const UserBlockStyled = styled.div`
   }
 
   & svg:last-child {
-    height: 1.5em;
-    width: 1.5em;
+    margin-left: auto;
+    margin-right: 0.2em;
+    height: 1.2em;
+    width: 1.2em;
   }
 `
 

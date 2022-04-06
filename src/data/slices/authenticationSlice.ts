@@ -5,7 +5,7 @@ export interface AuthenticationState {
 }
 
 const initialState: AuthenticationState = {
-  accessToken: null,
+  accessToken: null,  
 };
 
 export const authenticationSlice = createSlice({
