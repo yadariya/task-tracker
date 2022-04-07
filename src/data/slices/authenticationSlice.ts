@@ -1,10 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { useStorage } from '../../store/persist';
 
 export interface AuthenticationState {
   accessToken: string | null;
 }
 
-const initialState: AuthenticationState = {
+const [ loadAuth ] = useStorage<AuthenticationState>('auth')
+
+const initialState: AuthenticationState = loadAuth() || {
   accessToken: null,  
 };
 

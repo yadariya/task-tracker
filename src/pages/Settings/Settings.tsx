@@ -1,5 +1,5 @@
 import React from 'react';
 
-export default function Settings() {
-  return <div>Settings</div>;
-}
+const Settings: React.FC = () => <div>Settings</div>;
+
+export default Settings;

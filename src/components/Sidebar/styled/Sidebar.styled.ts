@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const SidebarWrapperStyled = styled.div`
   height: 100%;
-  min-width: 12em;
   position: fixed;
   z-index: 1;
   top: 0;
