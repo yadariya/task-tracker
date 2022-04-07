@@ -9,7 +9,9 @@ export function useStorage<T>(key: string): [() => T | null, (slice: T) => void]
     }
 
     try {
-      return JSON.parse(savedData) as T;
+      const state = JSON.parse(savedData) as T;
+      currentState = state;
+      return state;
     } catch (e) {
       return null;
     }
