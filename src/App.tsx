@@ -1,10 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, RouteMatch } from 'react-router-dom';
 import LoginLayout from './components/Layout/LoginLayout';
 import MainLayout from './components/Layout/MainLayout';
 import Login from './pages/authentication/Login/Login';
 import Logout from './pages/authentication/Logout/Logout';
+import NewAccount from './pages/authentication/Register/NewAccount';
 import Register from './pages/authentication/Register/Register';
 import List from './pages/List/List';
 import Settings from './pages/Settings/Settings';
@@ -20,6 +21,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/register/finish" element={<NewAccount />} />
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </LoginLayout>
@@ -30,7 +32,7 @@ const App: React.FC = () => {
     <MainLayout>
       <Routes>
         <Route path="/login" element={<Navigate to="/" />} />
-        <Route path="/register" element={<Navigate to="/" />} />
+        <Route path="/register/*" element={<Navigate to="/" />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/" element={<List />} />
         <Route path="/new-todo" element={<TodoForm />} />

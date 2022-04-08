@@ -1,9 +1,9 @@
 import { TransparentBoxStyled } from '../../../components/Layout/Box.styled';
-import RegisterForm from '../../../components/forms/RegisterForm';
+import EmailForm from '../../../components/forms/auth/EmailForm';
 
 const Register: React.FC = () => (
   <TransparentBoxStyled>
-    <RegisterForm />
+    <EmailForm />
   </TransparentBoxStyled>
 );
 

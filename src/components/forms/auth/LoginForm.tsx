@@ -1,13 +1,13 @@
 import React, { ChangeEvent, FormEvent } from 'react';
 import { Link, Navigate } from 'react-router-dom';
-import { LoginInputStyled } from '../Form/Input';
-import { LoginButtonStyled } from '../Form/Button';
-import { FlexColumn } from '../Layout/Flexbox.styled';
-import LoginFormHeading from '../Typography/LoginFormHeading';
-import LoginFormFootnote from '../Typography/LoginFormFootnote';
-import { logIn } from '../../data/slices/authenticationSlice';
-import LoginFormErrorStyled from '../Typography/LoginFormError';
-import { store } from '../../store/store';
+import { LoginInputStyled } from '../../Form/Input';
+import { LoginButtonStyled } from '../../Form/Button';
+import { FlexColumn } from '../../Layout/Flexbox.styled';
+import LoginFormHeading from '../../Typography/LoginFormHeading';
+import LoginFormFootnote from '../../Typography/LoginFormFootnote';
+import { logIn } from '../../../data/slices/authenticationSlice';
+import LoginFormErrorStyled from '../../Typography/LoginFormError';
+import { store } from '../../../store/store';
 
 interface AuthResult {
   detail: string | undefined;
@@ -76,12 +76,7 @@ class LoginForm extends React.Component<{}, LoginFormState> {
         <FlexColumn gap="1em" align="center">
           <LoginFormHeading>Sign In</LoginFormHeading>
           <FlexColumn gap="0.25em">
-            <LoginInputStyled
-              onChange={this.handleChange}
-              placeholder="Username"
-              pattern="[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]"
-              name="username"
-            />
+            <LoginInputStyled onChange={this.handleChange} placeholder="Username" name="username" />
             <LoginInputStyled
               onChange={this.handleChange}
               placeholder="Password"
