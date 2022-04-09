@@ -9,7 +9,7 @@ export const Logo: React.FC = () => (
       <LogoIconWrapper fill="#fff">
         <LogoIcon />
       </LogoIconWrapper>
-      <div>TaskManager</div>
+      <div>TaskTracker</div>
     </LogoWrapper>
   </LogoFont>
 );
@@ -20,7 +20,7 @@ export const BigLogo: React.FC = () => (
       <LogoIconWrapper fill="#000">
         <LogoIcon />
       </LogoIconWrapper>
-      <div>TaskManager</div>
+      <div>TaskTracker</div>
     </LogoWrapper>
   </BigLogoFont>
 );
