@@ -11,11 +11,8 @@ export const FormStyled = styled.form`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
-  grid-template-areas:
-    'title deadline tag'
-    'description description description'
-    '. submit .';
   column-gap: 15px;
+  align-items: center;
 `;
 
 export const SubmitStyled = styled(ButtonStyled)`

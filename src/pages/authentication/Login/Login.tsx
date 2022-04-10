@@ -1,3 +1,4 @@
+import React from 'react';
 import LoginForm from '../../../components/forms/auth/LoginForm';
 import { TransparentBoxStyled } from '../../../components/Layout/Box.styled';
 

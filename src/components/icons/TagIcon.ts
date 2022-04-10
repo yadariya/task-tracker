@@ -12,6 +12,9 @@ const TagIcon = styled.div<Props>`
   background-color: ${(props) => props.tag?.color};
   position: relative;
   cursor: pointer;
+  &:not(:last-child) {
+    margin-right: 15px;
+  }
 `;
 
 interface LabelProps {

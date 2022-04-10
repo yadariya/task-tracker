@@ -1,7 +1,16 @@
+type TodoStatus = 'BACKLOG' | 'TODO' | 'IN_PROGRESS' | 'DONE';
+
 export interface Todo {
+  id: string;
   name: string;
   deadline: string;
-  tag?: string;
+  tags: string[];
   description?: string;
-  completed: boolean;
+  status: TodoStatus;
+}
+
+export interface TodoForm extends Omit<Todo, 'tags'> {
+  tags: {
+    value: string;
+  }[];
 }

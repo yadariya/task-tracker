@@ -2,12 +2,12 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import dayjs from 'dayjs';
 import { FetchingStatus } from '../../../store/models';
 import { createTodo, deleteTodo, fetchTodo, fetchTodos, patchTodo } from '../../api/todos';
-import { Todo } from './models';
+import { Todo, TodoForm } from './models';
 
 interface TodosState {
   todos: Todo[];
   todosFetchingStatus: FetchingStatus;
-  editedTodo: Todo;
+  editedTodo: TodoForm;
   editedTodoFetchingStatus: FetchingStatus;
   todoPatchingStatus: FetchingStatus;
   todoCreatingStatus: FetchingStatus;
@@ -17,11 +17,12 @@ interface TodosState {
 const initialState: TodosState = {
   todos: [],
   editedTodo: {
+    id: '',
     name: '',
     deadline: dayjs(new Date()).format('YYYY-MM-DDThh:mm'),
-    tag: '',
+    tags: [],
     description: '',
-    completed: false,
+    status: 'TODO',
   },
   todosFetchingStatus: 'idle',
   editedTodoFetchingStatus: 'idle',
@@ -30,26 +31,46 @@ const initialState: TodosState = {
   todoDeletingStatus: 'idle',
 };
 
-export const fetchTodosAction = createAsyncThunk('todos/fetch', async () => {
-  const data = await fetchTodos();
-  return data;
-});
+interface AuthPayload<T> {
+  token: string;
+  data: T;
+}
 
-export const fetchTodoAction = createAsyncThunk('todo/fetch', async (name: string) => {
-  const data = await fetchTodo(name);
-  return data;
-});
+export const fetchTodosAction = createAsyncThunk(
+  'todos/fetch',
+  async ({ token }: AuthPayload<undefined>) => {
+    const data = await fetchTodos(token);
+    return data;
+  },
+);
 
-export const patchTodoAction = createAsyncThunk('todo/patch', async (todoData: Todo) => {
-  await patchTodo(todoData);
-});
-export const createTodoAction = createAsyncThunk('todo/create', async (todoData: Todo) => {
-  await createTodo(todoData);
-});
-export const deleteTodoAction = createAsyncThunk('todo/delete', async (name: string) => {
-  await deleteTodo(name);
-  return name;
-});
+export const fetchTodoAction = createAsyncThunk(
+  'todo/fetch',
+  async ({ token, data }: AuthPayload<string>) => {
+    const res = await fetchTodo(token, data);
+    return res;
+  },
+);
+
+export const patchTodoAction = createAsyncThunk(
+  'todo/patch',
+  async ({ token, data }: AuthPayload<TodoForm>) => {
+    await patchTodo(token, { ...data, tags: data.tags.map((tag) => tag.value) });
+  },
+);
+export const createTodoAction = createAsyncThunk(
+  'todo/create',
+  async ({ token, data }: AuthPayload<TodoForm>) => {
+    await createTodo(token, { ...data, tags: data.tags.map((tag) => tag.value) });
+  },
+);
+export const deleteTodoAction = createAsyncThunk(
+  'todo/delete',
+  async ({ token, data }: AuthPayload<string>) => {
+    await deleteTodo(token, data);
+    return data;
+  },
+);
 
 const todosSlice = createSlice({
   name: 'todos',
@@ -57,11 +78,12 @@ const todosSlice = createSlice({
   reducers: {
     resetTodoEditForm: (state) => {
       state.editedTodo = {
+        id: '',
         name: '',
         deadline: dayjs(new Date()).format('YYYY-MM-DDThh:mm'),
-        tag: '',
+        tags: [],
         description: '',
-        completed: false,
+        status: 'TODO',
       };
       state.editedTodoFetchingStatus = 'idle';
       state.todoPatchingStatus = 'idle';
@@ -85,7 +107,10 @@ const todosSlice = createSlice({
       })
       .addCase(fetchTodoAction.fulfilled, (state, action) => {
         state.editedTodoFetchingStatus = 'succeeded';
-        state.editedTodo = action.payload;
+        state.editedTodo = {
+          ...action.payload,
+          tags: action.payload.tags.map((tag) => ({ value: tag })),
+        };
       })
       .addCase(fetchTodoAction.rejected, (state) => {
         state.editedTodoFetchingStatus = 'failed';
@@ -113,7 +138,7 @@ const todosSlice = createSlice({
       })
       .addCase(deleteTodoAction.fulfilled, (state, action) => {
         state.todoDeletingStatus = 'succeeded';
-        state.todos = state.todos.filter((todo) => todo.name !== action.payload);
+        state.todos = state.todos.filter((todo) => todo.id !== action.payload);
       })
       .addCase(deleteTodoAction.rejected, (state) => {
         state.todoDeletingStatus = 'failed';
