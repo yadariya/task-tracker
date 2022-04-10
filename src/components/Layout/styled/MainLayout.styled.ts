@@ -6,18 +6,6 @@ export const LayoutWrapperStyled = styled.div`
   height: 100%;
 `;
 
-export const SidebarStyled = styled.div`
-  height: 100%;
-  width: 284px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background: linear-gradient(180deg, #4623e9, #eaabf0);
-  overflow-x: hidden;
-  padding-top: 20px;
-`;
-
 export const LayoutContentsWrapperStyled = styled.div`
   margin-left: 284px;
   padding: 0;

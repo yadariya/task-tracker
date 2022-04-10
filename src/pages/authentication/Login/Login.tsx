@@ -1,10 +1,10 @@
-import LoginForm from '../../../components/forms/LoginForm';
+import LoginForm from '../../../components/forms/auth/LoginForm';
 import { TransparentBoxStyled } from '../../../components/Layout/Box.styled';
 
-export default function Login() {
-  return (
-    <TransparentBoxStyled>
-      <LoginForm />
-    </TransparentBoxStyled>
-  );
-}
+const Login: React.FC = () => (
+  <TransparentBoxStyled>
+    <LoginForm />
+  </TransparentBoxStyled>
+);
+
+export default Login;

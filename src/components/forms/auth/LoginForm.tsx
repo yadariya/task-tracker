@@ -1,13 +1,13 @@
-import React, { ChangeEvent, FormEvent, ReactElement } from 'react';
-import { Link, Navigate, NavigateFunction } from 'react-router-dom';
-import { LoginInputStyled } from '../Form/Input';
-import { LoginButtonStyled } from '../Form/Button';
-import { CenteredColumn } from '../Layout/CenteredColumn.styled';
-import LoginFormHeading from '../Typography/LoginFormHeading';
-import LoginFormFootnote from '../Typography/LoginFormFootnote';
-import { logIn } from '../../data/slices/authenticationSlice';
-import LoginFormErrorStyled from '../Typography/LoginFormError';
-import { store } from '../../store/store';
+import React, { ChangeEvent, FormEvent } from 'react';
+import { Link, Navigate } from 'react-router-dom';
+import { LoginInputStyled } from '../../Form/Input';
+import { LoginButtonStyled } from '../../Form/Button';
+import { FlexColumn } from '../../Layout/Flexbox.styled';
+import LoginFormHeading from '../../Typography/LoginFormHeading';
+import LoginFormFootnote from '../../Typography/LoginFormFootnote';
+import { logIn } from '../../../data/slices/authenticationSlice';
+import LoginFormErrorStyled from '../../Typography/LoginFormError';
+import { store } from '../../../store/store';
 
 interface AuthResult {
   detail: string | undefined;
@@ -73,22 +73,17 @@ class LoginForm extends React.Component<{}, LoginFormState> {
     }
     return (
       <form onSubmit={this.handleSubmit}>
-        <CenteredColumn gap="1em">
+        <FlexColumn gap="1em" align="center">
           <LoginFormHeading>Sign In</LoginFormHeading>
-          <CenteredColumn gap="0.25em">
-            <LoginInputStyled
-              onChange={this.handleChange}
-              placeholder="Username"
-              pattern="[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]"
-              name="username"
-            />
+          <FlexColumn gap="0.25em">
+            <LoginInputStyled onChange={this.handleChange} placeholder="Username" name="username" />
             <LoginInputStyled
               onChange={this.handleChange}
               placeholder="Password"
               type="password"
               name="password"
             />
-          </CenteredColumn>
+          </FlexColumn>
           <LoginFormErrorStyled>{this.state.error}</LoginFormErrorStyled>
           <LoginButtonStyled type="submit">Login</LoginButtonStyled>
           <LoginFormFootnote>
@@ -97,7 +92,7 @@ class LoginForm extends React.Component<{}, LoginFormState> {
               <Link to="/register">Click to sign up</Link>
             </p>
           </LoginFormFootnote>
-        </CenteredColumn>
+        </FlexColumn>
       </form>
     );
   }

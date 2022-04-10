@@ -6,4 +6,12 @@ export const LayoutWrapperStyled = styled.div`
   min-height: 100%;
   padding-top: 5%;
   background: linear-gradient(180deg, #4623e9, #eaabf0);
+
+  & p {
+    margin: 0.25em;
+  }
+
+  & ul {
+    padding-left: 1em;
+  }
 `;
