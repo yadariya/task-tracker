@@ -10,6 +10,7 @@ export const SettingsFormStyled = styled.form`
 `;
 
 export const FootnoteStyled = styled.p`
+  text-align: center;
   margin: 0.1em;
   font-size: 0.7em;
   font-weight: 500;
@@ -20,14 +21,12 @@ export const FieldErrorStyled = styled(FootnoteStyled)`
 `;
 
 export const FormErrorStyled = styled(FootnoteStyled)`
-  text-align: center;
   grid-column-start: 1;
   grid-column-end: -1;
   color: #f00;
 `;
 
 export const FormSuccessStyled = styled(FootnoteStyled)`
-  text-align: center;
   grid-column-start: 1;
   grid-column-end: -1;
   color: #0a0;
