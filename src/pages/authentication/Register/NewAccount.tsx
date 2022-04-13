@@ -1,4 +1,3 @@
-import { useParams } from 'react-router';
 import { TransparentBoxStyled } from '../../../components/Layout/Box.styled';
 import NewAccountForm from '../../../components/forms/auth/NewAccountForm';
 import { useSearchParams } from 'react-router-dom';
