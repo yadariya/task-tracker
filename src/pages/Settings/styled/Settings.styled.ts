@@ -10,24 +10,20 @@ export const SettingsHeaderStyled = styled.div`
 
 export const FormStyled = styled.form`
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas:
-    'username'
-    'email'
-    'role'
-    'submit';
+    'username email role'
+    '. submit .';
   column-gap: 15px;
 `;
 
 export const FormStyledPassword = styled.form`
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   grid-template-areas:
-    'oldpassword'
-    'newpassword'
-    'reset';
+    'oldpassword newpassword'
+    'reset reset';
   column-gap: 15px;
 `;
 
@@ -36,7 +32,6 @@ export const SubmitStyled = styled(ButtonStyled)`
   width: 130px;
   margin-top: 30px;
 `;
-
 
 export const LayoutContentsStyledBoxes = styled(LayoutContentsStyled)`
   gap: 30px;

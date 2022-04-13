@@ -35,7 +35,7 @@ const Settings: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors, isValid, isDirty },
-  } = useForm();
+  } = useForm({ mode: 'onChange' });
 
   useEffect(() => {
     fetch(`${process.env.API_ROOT}/users/me`, {
@@ -67,7 +67,7 @@ const Settings: React.FC = () => {
           <InputBlock style={{ gridArea: 'username' }}>
             <InputLabelStyled>Name</InputLabelStyled>
             <InputStyled
-              placeholder={userInfo?.username}
+              defaultValue={userInfo?.username}
               type="text"
               {...register('username', { required: true })}
             />
@@ -76,7 +76,7 @@ const Settings: React.FC = () => {
           <InputBlock style={{ gridArea: 'email' }}>
             <InputLabelStyled>Email</InputLabelStyled>
             <InputStyled
-              placeholder={userInfo?.email}
+              defaultValue={userInfo?.email}
               type="text"
               {...register('email', { required: true })}
             />
@@ -85,7 +85,7 @@ const Settings: React.FC = () => {
           <InputBlock style={{ gridArea: 'role' }}>
             <InputLabelStyled>Role</InputLabelStyled>
             <InputStyled
-              placeholder={userInfo?.role}
+              defaultValue={userInfo?.role}
               type="text"
               {...register('role', { required: true })}
             />
@@ -101,17 +101,17 @@ const Settings: React.FC = () => {
         </FormStyled>
       </BoxStyled>
 
-      <BoxStyled>
+      <BoxStyled width={`${(80 * 2) / 3}%`}>
         <FormStyledPassword onSubmit={handleSubmit(reset)}>
           <InputBlock style={{ gridArea: 'oldpassword' }}>
             <InputLabelStyled>Old password</InputLabelStyled>
-            <InputStyled type="text" {...register('oldpassword', { required: true })} />
+            <InputStyled type="password" {...register('oldpassword', { required: true })} />
           </InputBlock>
           <InputBlock style={{ gridArea: 'newpassword' }}>
             <InputLabelStyled>New password</InputLabelStyled>
-            <InputStyled type="text" {...register('newpassword', { required: true })} />
+            <InputStyled type="password" {...register('newpassword', { required: true })} />
           </InputBlock>
-          <SubmitStyled style={{ gridArea: 'reset' }} type="reset" disabled={!isDirty || !isValid}>
+          <SubmitStyled style={{ gridArea: 'reset' }} type="submit" disabled={!isDirty || !isValid}>
             Reset
           </SubmitStyled>
         </FormStyledPassword>
