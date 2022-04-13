@@ -5,9 +5,10 @@ import { LoginButtonStyled } from '../../Form/Button';
 import { FlexColumn } from '../../Layout/Flexbox.styled';
 import LoginFormHeading from '../../Typography/LoginFormHeading';
 import LoginFormFootnote from '../../Typography/LoginFormFootnote';
-import { logIn } from '../../../data/slices/authenticationSlice';
+import { logIn } from '../../../data/slices/user/authenticationSlice';
 import LoginFormErrorStyled from '../../Typography/LoginFormError';
 import { store } from '../../../store/store';
+import { authenticateUser } from '../../../data/api/user';
 
 interface AuthResult {
   detail: string | undefined;
@@ -47,13 +48,13 @@ class LoginForm extends React.Component<{}, LoginFormState> {
 
   async handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    fetch(`${process.env.API_ROOT}/users/authenticate`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(this.state),
-    })
-      .then((response) => response.json())
-      .then((auth) => this.handleAuth(auth));
+    authenticateUser(this.state.username, this.state.password)
+      .then((response) => this.handleAuth(response))
+      .catch((error) =>
+        this.setState({
+          error: error.response.data.detail,
+        }),
+      );
   }
 
   handleAuth(auth: AuthResult) {
@@ -63,7 +64,7 @@ class LoginForm extends React.Component<{}, LoginFormState> {
     }
 
     this.setState({
-      error: auth.detail || '',
+      error: auth.detail || 'An unknown error occured.',
     });
   }
 

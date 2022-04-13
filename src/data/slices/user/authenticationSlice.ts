@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { useStorage } from '../../store/persist';
+import { useStorage } from '../../../store/persist';
 
 export interface AuthenticationState {
   accessToken: string | null;

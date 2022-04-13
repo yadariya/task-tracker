@@ -7,6 +7,7 @@ import LoginFormHeading from '../../Typography/LoginFormHeading';
 import LoginFormFootnote from '../../Typography/LoginFormFootnote';
 import { store } from '../../../store/store';
 import LoginFormErrorStyled from '../../Typography/LoginFormError';
+import { createUser } from '../../../data/api/user';
 
 interface EmailFormState {
   email: string;
@@ -45,17 +46,13 @@ class EmailForm extends React.Component<{}, EmailFormState> {
   handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    fetch(`${process.env.API_ROOT}/users/new`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: this.state.email }),
-    }).then(async (r) =>
-      r.ok
-        ? this.askConfirmation()
-        : this.setState({
-            error: await r.text(),
-          })
-    );
+    createUser(this.state.email)
+      .then(() => this.askConfirmation())
+      .catch((error) =>
+        this.setState({
+          error: error.response.data.detail,
+        }),
+      );
   }
 
   askConfirmation() {

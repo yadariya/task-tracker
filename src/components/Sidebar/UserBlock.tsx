@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getUserInfo } from '../../data/api/user';
+import { setUserInfo } from '../../data/slices/user/userInfoSlice';
 import { RootState } from '../../store/store';
 import LogoutIcon from '../icons/LogoutIcon';
 import ProfileIcon from '../icons/ProfileIcon';
@@ -10,27 +12,15 @@ import { SidebarBox } from './SidebarBox';
 import UserBlockStyled from './styled/UserBlock.styled';
 import UserInfoColumn from './UserInfoColumn';
 
-interface UserInfo {
-  email: string;
-  username: string;
-  role: string;
-  id: string;
-}
-
-const UserBlock: React.FC = ({ children }) => {
-  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
-  const accessToken = useSelector((state: RootState) => state.authentication.accessToken);
+const UserBlock: React.FC = () => {
+  const dispatch = useDispatch();
+  const userInfo = useSelector((state: RootState) => state.userInfo);
+  const token = useSelector((state: RootState) => state.authentication.accessToken);
 
   useEffect(() => {
-    fetch(`${process.env.API_ROOT}/users/me`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((info) => setUserInfo(info));
+    if (!userInfo.id) {
+      getUserInfo(token!).then((user) => dispatch(setUserInfo(user)));
+    }
   }, []);
 
   return (
@@ -40,7 +30,7 @@ const UserBlock: React.FC = ({ children }) => {
           <Link to="/settings">
             <FlexRow gap="0.4em" justify="space-between" align="center">
               <ProfileIcon />
-              <UserInfoColumn nickname={userInfo?.username} role={userInfo?.role} />
+              <UserInfoColumn nickname={userInfo.username} role={userInfo.role} />
               <SettingsIcon />
             </FlexRow>
           </Link>
