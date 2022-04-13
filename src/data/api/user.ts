@@ -69,7 +69,7 @@ export const changePassword = async (
 };
 
 export const confirmEmailChange = async (access_token: string, confirm_token: string) => {
-  const res = await axios.patch(
+  const res = await axios.post(
     `${API_ROOT}/users/me/confirm`,
     { confirm_token },
     {
