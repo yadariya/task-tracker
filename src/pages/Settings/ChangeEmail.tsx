@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { BoxStyled } from '../../components/Layout/Box.styled';
 import { LayoutContentsStyled } from '../../components/Layout/styled/MainLayout.styled';
+import CodeLine from '../../components/Typography/CodeLine';
 import PageHeadingStyled from '../../components/Typography/PageHeading';
 import { confirmEmailChange } from '../../data/api/user';
 import { RootState } from '../../store/store';
@@ -36,8 +37,10 @@ const ChangeEmail: React.FC = () => {
         )}
         {error ? (
           <>
-            <p>Cannot update your email. Details:</p>
-            <code>{error}</code>
+            <p>Cannot update your email.</p>
+            <p>
+              Details: <CodeLine>{error}</CodeLine>
+            </p>
           </>
         ) : (
           <p>Updated your email successfully!</p>
