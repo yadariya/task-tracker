@@ -26,6 +26,7 @@ export const TagIconLabel = styled.div<LabelProps>`
   padding: 5px;
   bottom: 20px;
   font-size: 15px;
+  white-space: nowrap;
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 4px;
   pointer-events: none;
