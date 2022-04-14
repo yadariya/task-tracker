@@ -3,6 +3,7 @@ import { ArrowDownIcon } from '../icons/ArrowIcon';
 import { FlexRow } from '../Layout/Flexbox.styled';
 import {
   DropdownStyled,
+  DropdownHeaderStyled,
   DropdownListStyled,
   DropdownListItemStyled,
   DropdownListTickStyled,
@@ -13,6 +14,7 @@ interface DropdownProps {
   header?: string;
   autoheader?: 'values' | 'count';
   setParentState: (ids: string[]) => void;
+  initialState: string[];
 }
 
 const MultichoiceDropdown: React.FC<DropdownProps> = ({
@@ -20,15 +22,18 @@ const MultichoiceDropdown: React.FC<DropdownProps> = ({
   header,
   autoheader,
   setParentState,
+  initialState,
 }) => {
   const [isOpened, setIsOpened] = useState(false);
-  const [selected, setSelected] = useState<string[]>([]);
+  const [selected, setSelected] = useState<string[]>(initialState);
 
+  // Open/close on field (aka header) click
   const handleHeaderClick: MouseEventHandler = (e) => {
     e.stopPropagation();
     setIsOpened(!isOpened);
   };
 
+  // Change state on list toggles
   const handleListItemToggled: FormEventHandler = (e) => {
     const input = e.target as HTMLInputElement;
     const inputId = input.name;
@@ -41,6 +46,12 @@ const MultichoiceDropdown: React.FC<DropdownProps> = ({
     setParentState(newState);
   };
 
+  // Update when parent state updates
+  useEffect(() => {
+    setSelected(initialState);
+  }, [initialState]);
+
+  // Close if clicked outside the component
   useEffect(() => {
     const close = () => setIsOpened(false);
     (async () =>
@@ -52,7 +63,7 @@ const MultichoiceDropdown: React.FC<DropdownProps> = ({
   return (
     <DropdownStyled onClick={handleHeaderClick}>
       <FlexRow justify="space-between" align="center" height="100%">
-        <div>
+        <DropdownHeaderStyled>
           {autoheader === 'count'
             ? `${selected.length} selected`
             : autoheader === 'values'
@@ -61,7 +72,7 @@ const MultichoiceDropdown: React.FC<DropdownProps> = ({
                 .map(([name, _]) => name)
                 .join(', ') || header
             : header}
-        </div>
+        </DropdownHeaderStyled>
         <ArrowDownIcon />
       </FlexRow>
       {isOpened && (

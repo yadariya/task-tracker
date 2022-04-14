@@ -80,9 +80,10 @@ const TodoForm: React.FC = () => {
     if (type === 'edit' && editedTodoFetchingStatus === 'succeeded') {
       setValue('id', defaultValues.id);
       setValue('name', defaultValues.name, { shouldValidate: true });
-      setValue('tags', defaultValues.tags, { shouldValidate: true });
       setValue('deadline', defaultValues.deadline, { shouldValidate: true });
       setValue('description', defaultValues.description, { shouldValidate: true });
+
+      setTags(defaultValues.tags);
     }
   }, [editedTodoFetchingStatus]);
 
@@ -134,8 +135,9 @@ const TodoForm: React.FC = () => {
           <InputBlock>
             <InputLabelStyled>Tags</InputLabelStyled>
             <MultichoiceDropdown
-              setParentState={setTags}
               items={Object.fromEntries(Tags.map((tag) => [tag.name, tag.slug]))}
+              setParentState={setTags}
+              initialState={tags}
               autoheader="values"
               header="None selected"
             />

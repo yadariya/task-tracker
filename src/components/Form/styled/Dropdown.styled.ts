@@ -10,6 +10,13 @@ export const DropdownStyled = styled.div`
   user-select: none;
 `;
 
+export const DropdownHeaderStyled = styled.div`
+  overflow: clip;
+  white-space: nowrap;
+  width: calc(100% - 1em);
+  text-overflow: ellipsis;
+`;
+
 export const DropdownListStyled = styled.fieldset`
   position: absolute;
   top: 100%;
@@ -32,6 +39,10 @@ export const DropdownListItemStyled = styled.label`
   align-items: center;
   gap: 0.3em;
   padding: 0.2em 0.5em;
+
+  &:hover {
+    background: rgba(255, 0, 255, 0.05);
+  }
 `;
 
 export const DropdownListTickStyled = styled.input`
