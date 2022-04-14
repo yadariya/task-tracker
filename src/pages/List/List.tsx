@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { LayoutContentsStyled } from '../../components/Layout/styled/MainLayout.styled';
+import PageHeadingStyled from '../../components/Typography/PageHeading';
 import { selectAllTodos, selectTodosFetchingStatus } from '../../data/slices/todos/selectors';
 import { fetchTodosAction } from '../../data/slices/todos/todosSlice';
 import { useTypedSelector } from '../../store/hooks';
@@ -19,13 +20,13 @@ const List: React.FC = () => {
     }
   }, [fetchingStatus]);
 
-  if (fetchingStatus !== 'succeeded') {
-    return <h3>Loading</h3>;
-  }
-
   return (
     <LayoutContentsStyled>
-      <TodosList todos={todos} />
+      {fetchingStatus === 'succeeded' ? (
+        <TodosList todos={todos} />
+      ) : (
+        <PageHeadingStyled>Loading...</PageHeadingStyled>
+      )}
     </LayoutContentsStyled>
   );
 };

@@ -90,6 +90,8 @@ const TodoForm: React.FC = () => {
   }, [editedTodoFetchingStatus]);
 
   const submit = (data: typeof defaultValues) => {
+    data.tags = data.tags.filter((_, i, a) => a.findIndex((v) => v.value === a[i].value) === i); // get only unique tags
+
     if (type === 'edit' && token) {
       dispatch(patchTodoAction({ token, data }));
     } else if (token) {
@@ -98,7 +100,11 @@ const TodoForm: React.FC = () => {
   };
 
   if (type === 'edit' && editedTodoFetchingStatus !== 'succeeded') {
-    return <h1>Loading...</h1>;
+    return (
+      <LayoutContentsStyled>
+        <PageHeadingStyled>Loading...</PageHeadingStyled>
+      </LayoutContentsStyled>
+    );
   }
   return (
     <LayoutContentsStyled>

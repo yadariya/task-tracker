@@ -36,7 +36,7 @@ const ListItem: React.FC<Props> = ({ todo }) => {
       <TodosCellStyled>{dayjs(todo.deadline).format('DD/MM/YYYY')}</TodosCellStyled>
       <TodosCellStyled>
         {tags.map((tag) => (
-          <Tag tag={tag} />
+          <Tag key={tag?.slug} tag={tag} />
         ))}
       </TodosCellStyled>
       <IconCellStyled onClick={() => navigate(`/edit-todo/${todo.id}`)}>

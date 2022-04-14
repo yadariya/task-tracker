@@ -33,7 +33,7 @@ const TodosList: React.FC<Props> = ({ todos }) => {
         </TodosHeadingRowStyled>
 
         {todos.map((todo) => (
-          <ListItem key={todo.name} todo={todo} />
+          <ListItem key={todo.id} todo={todo} />
         ))}
       </TodosTableStyled>
     </BoxStyled>
