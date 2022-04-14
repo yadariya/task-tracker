@@ -50,7 +50,7 @@ class EmailForm extends React.Component<{}, EmailFormState> {
       .then(() => this.askConfirmation())
       .catch((error) =>
         this.setState({
-          error: error.response.data.detail,
+          error: error.response?.data.detail || 'An unknown error occured.',
         }),
       );
   }

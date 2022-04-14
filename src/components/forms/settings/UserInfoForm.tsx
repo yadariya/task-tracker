@@ -7,12 +7,13 @@ import {
   SubmitStyled,
   FormErrorStyled,
   FormSuccessStyled,
-  FootnoteStyled,
+  FormFootnoteStyled,
 } from './styled/SettingsForm.styled';
 import { RootState } from '../../../store/store';
 import { useState } from 'react';
 import { changeUserInfo } from '../../../data/api/user';
 import { setUserInfo, UserInfoState } from '../../../data/slices/user/userInfoSlice';
+import CodeLine from '../../Typography/CodeLine';
 
 type UserInfoFormFieldName = keyof Omit<UserInfoState, 'id'>;
 
@@ -40,7 +41,7 @@ const UserInfoForm: React.FC = () => {
         dispatch(setUserInfo(data));
       })
       .catch((error) => {
-        setFormError(error.response.data.detail);
+        setFormError(error.response?.data.detail || 'An unknown error occured.');
         setSuccess(false);
       });
   };
@@ -92,12 +93,16 @@ const UserInfoForm: React.FC = () => {
   return (
     <SettingsFormStyled onSubmit={handleSubmit(submit as () => void)}>
       {inputs}
-      {formError && <FormErrorStyled>{formError}</FormErrorStyled>}
+      {formError && (
+        <FormErrorStyled>
+          Error: <CodeLine>{formError}</CodeLine>
+        </FormErrorStyled>
+      )}
       {success && <FormSuccessStyled>Data has been updated!</FormSuccessStyled>}
       {newEmail && (
-        <FootnoteStyled>
-          To confirm an email change, follow the instructions sent to {newEmail}
-        </FootnoteStyled>
+        <FormFootnoteStyled>
+          To confirm an email change, follow the instructions sent to <b>{newEmail}</b>
+        </FormFootnoteStyled>
       )}
 
       <SubmitStyled type="submit" disabled={!isDirty || !isValid}>

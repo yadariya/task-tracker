@@ -52,7 +52,7 @@ class LoginForm extends React.Component<{}, LoginFormState> {
       .then((response) => this.handleAuth(response))
       .catch((error) =>
         this.setState({
-          error: error.response.data.detail,
+          error: error.response?.data.detail || 'An unknown error occured.',
         }),
       );
   }

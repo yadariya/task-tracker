@@ -69,7 +69,7 @@ class NewAccountForm extends React.Component<{ confirmation: string | null }, Ne
       .then((response) => this.handleRegistration(response))
       .catch((error) =>
         this.setState({
-          error: error.response.data.detail,
+          error: error.response?.data.detail || 'An unknown error occured.',
         }),
       );
   }

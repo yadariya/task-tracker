@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { changePassword } from '../../../data/api/user';
 import { RootState } from '../../../store/store';
 import { InputStyled, InputLabelStyled, InputBlock } from '../../Form/Input';
+import CodeLine from '../../Typography/CodeLine';
 import {
   SettingsFormStyled,
   FieldErrorStyled,
@@ -47,7 +48,7 @@ const PasswordChangeForm: React.FC = () => {
         setFormError('');
       })
       .catch((error) => {
-        setFormError(error.response.data.detail);
+        setFormError(error.response?.data.detail || 'An unknown error occured.');
         setSuccess(false);
       });
   };
@@ -87,7 +88,11 @@ const PasswordChangeForm: React.FC = () => {
           <FieldErrorStyled>{errors.repeatpassword.message}</FieldErrorStyled>
         )}
       </InputBlock>
-      {formError && <FormErrorStyled>{formError}</FormErrorStyled>}
+      {formError && (
+        <FormErrorStyled>
+          Error: <CodeLine>{formError}</CodeLine>
+        </FormErrorStyled>
+      )}
       {success && <FormSuccessStyled>Password changed successfully!</FormSuccessStyled>}
       <SubmitStyled type="submit" disabled={!isDirty || !isValid}>
         Reset
