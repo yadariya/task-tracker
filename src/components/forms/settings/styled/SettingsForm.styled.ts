@@ -20,15 +20,16 @@ export const FieldErrorStyled = styled(FootnoteStyled)`
   color: #f00;
 `;
 
-export const FormErrorStyled = styled(FootnoteStyled)`
+export const FormFootnoteStyled = styled(FootnoteStyled)`
   grid-column-start: 1;
   grid-column-end: -1;
+`;
+
+export const FormErrorStyled = styled(FormFootnoteStyled)`
   color: #f00;
 `;
 
-export const FormSuccessStyled = styled(FootnoteStyled)`
-  grid-column-start: 1;
-  grid-column-end: -1;
+export const FormSuccessStyled = styled(FormFootnoteStyled)`
   color: #0a0;
 `;
 
