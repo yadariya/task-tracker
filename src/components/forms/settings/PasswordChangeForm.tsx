@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { changePassword } from '../../../data/api/user';
 import { RootState } from '../../../store/store';
-import { InputStyled, InputLabelStyled, InputBlock } from '../../Form/Input';
+import { InputStyled, InputLabelStyled, InputBlock } from '../../Form/styled/Input.styled';
 import CodeLine from '../../Typography/CodeLine';
 import {
   SettingsFormStyled,

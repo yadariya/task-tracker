@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ArrowRightIcon from '../icons/ArrowRightIcon';
+import { ArrowRightIcon } from '../icons/ArrowIcon';
 import { FlexRow } from '../Layout/Flexbox.styled';
 import { SidebarBox } from './SidebarBox';
 

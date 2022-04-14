@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { InputStyled, InputLabelStyled, InputBlock } from '../../Form/Input';
+import { InputStyled, InputLabelStyled, InputBlock } from '../../Form/styled/Input.styled';
 import {
   SettingsFormStyled,
   FieldErrorStyled,

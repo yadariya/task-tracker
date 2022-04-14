@@ -7,7 +7,7 @@ import {
   TodosHeadingRowStyled,
   TodosTableStyled,
 } from './styled/TodosList.styled';
-import { ButtonStyled } from '../../../components/Form/Button';
+import { ButtonStyled } from '../../../components/Form/styled/Button.styled';
 import { BoxStyled } from '../../../components/Layout/Box.styled';
 import { Todo } from '../../../data/slices/todos/models';
 

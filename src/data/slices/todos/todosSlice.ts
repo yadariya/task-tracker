@@ -2,12 +2,12 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import dayjs from 'dayjs';
 import { FetchingStatus } from '../../../store/models';
 import { createTodo, deleteTodo, fetchTodo, fetchTodos, patchTodo } from '../../api/todos';
-import { Todo, TodoForm } from './models';
+import { Todo } from './models';
 
 interface TodosState {
   todos: Todo[];
   todosFetchingStatus: FetchingStatus;
-  editedTodo: TodoForm;
+  editedTodo: Todo;
   editedTodoFetchingStatus: FetchingStatus;
   todoPatchingStatus: FetchingStatus;
   todoCreatingStatus: FetchingStatus;
@@ -54,14 +54,14 @@ export const fetchTodoAction = createAsyncThunk(
 
 export const patchTodoAction = createAsyncThunk(
   'todo/patch',
-  async ({ token, data }: AuthPayload<TodoForm>) => {
-    await patchTodo(token, { ...data, tags: data.tags.map((tag) => tag.value) });
+  async ({ token, data }: AuthPayload<Todo>) => {
+    await patchTodo(token, data);
   },
 );
 export const createTodoAction = createAsyncThunk(
   'todo/create',
-  async ({ token, data }: AuthPayload<TodoForm>) => {
-    await createTodo(token, { ...data, tags: data.tags.map((tag) => tag.value) });
+  async ({ token, data }: AuthPayload<Todo>) => {
+    await createTodo(token, data);
   },
 );
 export const deleteTodoAction = createAsyncThunk(
@@ -107,10 +107,7 @@ const todosSlice = createSlice({
       })
       .addCase(fetchTodoAction.fulfilled, (state, action) => {
         state.editedTodoFetchingStatus = 'succeeded';
-        state.editedTodo = {
-          ...action.payload,
-          tags: action.payload.tags.map((tag) => ({ value: tag })),
-        };
+        state.editedTodo = action.payload;
       })
       .addCase(fetchTodoAction.rejected, (state) => {
         state.editedTodoFetchingStatus = 'failed';

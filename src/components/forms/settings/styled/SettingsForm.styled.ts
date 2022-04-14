@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ButtonStyled } from '../../../Form/Button';
+import { ButtonStyled } from '../../../Form/styled/Button.styled';
 
 export const SettingsFormStyled = styled.form`
   display: grid;

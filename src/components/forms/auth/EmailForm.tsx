@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent, RefObject } from 'react';
 import { Link, Navigate } from 'react-router-dom';
-import { LoginInputStyled } from '../../Form/Input';
-import { LoginButtonStyled } from '../../Form/Button';
+import { LoginInputStyled } from '../../Form/styled/Input.styled';
+import { LoginButtonStyled } from '../../Form/styled/Button.styled';
 import { FlexColumn } from '../../Layout/Flexbox.styled';
 import LoginFormHeading from '../../Typography/LoginFormHeading';
 import LoginFormFootnote from '../../Typography/LoginFormFootnote';
