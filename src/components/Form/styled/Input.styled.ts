@@ -20,6 +20,7 @@ export const InputBlock = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  min-width: 0;
 `;
 
 export const InputerrorStyled = styled.h5`

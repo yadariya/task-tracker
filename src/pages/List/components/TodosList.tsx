@@ -7,7 +7,7 @@ import {
   TodosHeadingRowStyled,
   TodosTableStyled,
 } from './styled/TodosList.styled';
-import { ButtonStyled } from '../../../components/Form/Button';
+import { ButtonStyled } from '../../../components/Form/styled/Button.styled';
 import { BoxStyled } from '../../../components/Layout/Box.styled';
 import { Todo } from '../../../data/slices/todos/models';
 
@@ -33,7 +33,7 @@ const TodosList: React.FC<Props> = ({ todos }) => {
         </TodosHeadingRowStyled>
 
         {todos.map((todo) => (
-          <ListItem key={todo.name} todo={todo} />
+          <ListItem key={todo.id} todo={todo} />
         ))}
       </TodosTableStyled>
     </BoxStyled>

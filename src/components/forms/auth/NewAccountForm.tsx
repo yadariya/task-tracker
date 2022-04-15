@@ -1,13 +1,14 @@
 import React, { ChangeEvent, FormEvent, RefObject } from 'react';
 import { Link, Navigate } from 'react-router-dom';
-import { LoginInputStyled } from '../../Form/Input';
-import { LoginButtonStyled } from '../../Form/Button';
+import { LoginInputStyled } from '../../Form/styled/Input.styled';
+import { LoginButtonStyled } from '../../Form/styled/Button.styled';
 import { FlexColumn } from '../../Layout/Flexbox.styled';
 import LoginFormHeading from '../../Typography/LoginFormHeading';
 import LoginFormFootnote from '../../Typography/LoginFormFootnote';
 import { store } from '../../../store/store';
-import { logIn } from '../../../data/slices/authenticationSlice';
+import { logIn } from '../../../data/slices/user/authenticationSlice';
 import LoginFormErrorStyled from '../../Typography/LoginFormError';
+import { confirmUserCreation } from '../../../data/api/user';
 
 interface RegistrationResult {
   detail: string | undefined;
@@ -61,18 +62,16 @@ class NewAccountForm extends React.Component<{ confirmation: string | null }, Ne
       return;
     }
 
-    fetch(`${process.env.API_ROOT}/users/new/confirm`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        confirm_token: this.state.confirmation,
-        username: this.state.username,
-        password: this.state.password,
-        role: 'Newbie',
-      }),
+    confirmUserCreation(this.state.confirmation, {
+      ...this.state,
+      role: 'Newbie',
     })
-      .then((response) => response.json())
-      .then((auth) => this.handleRegistration(auth));
+      .then((response) => this.handleRegistration(response))
+      .catch((error) =>
+        this.setState({
+          error: error.response?.data.detail || 'An unknown error occured.',
+        }),
+      );
   }
 
   handleRegistration(auth: RegistrationResult) {

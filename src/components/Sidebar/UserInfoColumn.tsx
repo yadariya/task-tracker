@@ -17,7 +17,7 @@ class UserInfoColumn extends React.Component<UserInfoProps> {
     return (
       <UserInfoColumnStyled>
         <FlexColumn>
-          <div>{this.props.nickname ?? 'Loading...'}</div>
+          <div>{this.props.nickname || 'Loading...'}</div>
           {this.props.role ? roleDiv : ''}
         </FlexColumn>
       </UserInfoColumnStyled>

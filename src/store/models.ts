@@ -8,13 +8,38 @@ export interface Tag {
 }
 export const Tags: Tag[] = [
   {
-    slug: 'work',
-    name: 'Work',
+    slug: 'event',
+    name: 'Event',
+    color: 'orange',
+  },
+  {
+    slug: 'homework',
+    name: 'Homework',
     color: 'red',
   },
   {
-    slug: 'study',
-    name: 'Study',
+    slug: 'learn',
+    name: 'Learn',
     color: 'green',
   },
-];
+  {
+    slug: 'people',
+    name: 'People',
+    color: 'blue',
+  },
+  {
+    slug: 'university',
+    name: 'University',
+    color: '#8cb641',
+  },
+  {
+    slug: 'work',
+    name: 'Work',
+    color: 'brown',
+  },
+  {
+    slug: 'selfcare',
+    name: 'Self care',
+    color: 'aqua',
+  },
+].sort((a, b) => a.name.localeCompare(b.name));

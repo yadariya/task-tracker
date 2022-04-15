@@ -8,9 +8,3 @@ export interface Todo {
   description?: string;
   status: TodoStatus;
 }
-
-export interface TodoForm extends Omit<Todo, 'tags'> {
-  tags: {
-    value: string;
-  }[];
-}

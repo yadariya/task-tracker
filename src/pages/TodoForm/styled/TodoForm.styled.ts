@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ButtonStyled } from '../../../components/Form/Button';
+import { ButtonStyled } from '../../../components/Form/styled/Button.styled';
 
 export const TodoFormHeaderStyled = styled.div`
   width: 80%;

@@ -8,6 +8,7 @@ import Logout from './pages/authentication/Logout/Logout';
 import NewAccount from './pages/authentication/Register/NewAccount';
 import Register from './pages/authentication/Register/Register';
 import List from './pages/List/List';
+import ChangeEmail from './pages/Settings/ChangeEmail';
 import Settings from './pages/Settings/Settings';
 import TodoForm from './pages/TodoForm/TodoForm';
 import { RootState } from './store/store';
@@ -38,6 +39,7 @@ const App: React.FC = () => {
         <Route path="/new-todo" element={<TodoForm />} />
         <Route path="/edit-todo/:id" element={<TodoForm />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/settings/change_email" element={<ChangeEmail />} />
       </Routes>
     </MainLayout>
   );

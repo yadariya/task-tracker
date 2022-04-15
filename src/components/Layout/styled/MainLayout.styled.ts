@@ -4,12 +4,12 @@ export const LayoutWrapperStyled = styled.div`
   box-sizing: border-box;
   font-size: 1.2em;
   height: 100%;
+  display: grid;
+  grid-template-columns: min-content auto;
 `;
 
 export const LayoutContentsWrapperStyled = styled.div`
-  margin-left: 284px;
-  padding: 0;
-  padding-top: 100px;
+  padding: 100px 0;
   overflow-y: scroll;
   height: 100%;
   background-color: #e1e6fa;

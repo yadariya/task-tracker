@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,11 +8,10 @@ import {
   InputBlock,
   InputerrorStyled,
   TextAreaStyled,
-} from '../../components/Form/Input';
+} from '../../components/Form/styled/Input.styled';
 import { BoxStyled } from '../../components/Layout/Box.styled';
 import PageHeadingStyled from '../../components/Typography/PageHeading';
 import { FormStyled, SubmitStyled, TodoFormHeaderStyled } from './styled/TodoForm.styled';
-import SelectStyled from '../../components/Form/Select';
 import { LayoutContentsStyled } from '../../components/Layout/styled/MainLayout.styled';
 import {
   selectEditedTodo,
@@ -29,8 +28,9 @@ import {
 } from '../../data/slices/todos/todosSlice';
 import { RootState } from '../../store/store';
 import { useTypedSelector } from '../../store/hooks';
-import { TodoForm as TodoFormModel } from '../../data/slices/todos/models';
-import { ButtonStyled } from '../../components/Form/Button';
+import { Todo } from '../../data/slices/todos/models';
+import MultichoiceDropdown from '../../components/Form/MultichoiceDropdown';
+import { Tags } from '../../store/models';
 
 const TodoForm: React.FC = () => {
   const location = useLocation();
@@ -44,20 +44,17 @@ const TodoForm: React.FC = () => {
   const type = location.pathname === '/new-todo' ? 'add' : 'edit';
   const { id } = useParams();
 
+  const [tags, setTags] = useState<string[]>([]);
+
   const {
     register,
     control,
     handleSubmit,
     setValue,
     formState: { errors, isValid, isDirty },
-  } = useForm<TodoFormModel>({
+  } = useForm<Todo>({
     mode: 'onChange',
     defaultValues,
-  });
-
-  const { fields, append } = useFieldArray({
-    name: 'tags',
-    control,
   });
 
   React.useEffect(() => {
@@ -83,13 +80,20 @@ const TodoForm: React.FC = () => {
     if (type === 'edit' && editedTodoFetchingStatus === 'succeeded') {
       setValue('id', defaultValues.id);
       setValue('name', defaultValues.name, { shouldValidate: true });
-      setValue('tags', defaultValues.tags, { shouldValidate: true });
       setValue('deadline', defaultValues.deadline, { shouldValidate: true });
       setValue('description', defaultValues.description, { shouldValidate: true });
+
+      setTags(defaultValues.tags);
     }
   }, [editedTodoFetchingStatus]);
 
+  React.useEffect(() => {
+    setValue('tags', tags, { shouldValidate: true });
+  }, [tags]);
+
   const submit = (data: typeof defaultValues) => {
+    data.tags = data.tags.filter((v, i, a) => a.indexOf(v) === i); // get only unique tags
+
     if (type === 'edit' && token) {
       dispatch(patchTodoAction({ token, data }));
     } else if (token) {
@@ -98,7 +102,11 @@ const TodoForm: React.FC = () => {
   };
 
   if (type === 'edit' && editedTodoFetchingStatus !== 'succeeded') {
-    return <h1>Loading...</h1>;
+    return (
+      <LayoutContentsStyled>
+        <PageHeadingStyled>Loading...</PageHeadingStyled>
+      </LayoutContentsStyled>
+    );
   }
   return (
     <LayoutContentsStyled>
@@ -112,47 +120,29 @@ const TodoForm: React.FC = () => {
 
       <BoxStyled>
         <FormStyled onSubmit={handleSubmit(submit)}>
-          <InputBlock
-            style={{
-              gridColumnStart: 1,
-              gridColumnEnd: 3,
-            }}
-          >
+          <InputBlock>
             <InputLabelStyled>Name</InputLabelStyled>
             <InputStyled type="text" {...register('name', { required: true })} />
             <InputerrorStyled>{errors.name?.message}</InputerrorStyled>
           </InputBlock>
 
-          <InputBlock
-            style={{
-              gridColumnStart: 3,
-              gridColumnEnd: 4,
-            }}
-          >
+          <InputBlock>
             <InputLabelStyled>Deadline</InputLabelStyled>
             <InputStyled type="datetime-local" {...register('deadline', { required: true })} />
             <InputerrorStyled>{errors.deadline?.message}</InputerrorStyled>
           </InputBlock>
 
-          {fields.map((tag, idx) => (
-            <InputBlock key={tag.id}>
-              <InputLabelStyled>Tag</InputLabelStyled>
-              <SelectStyled style={{ gridArea: 'tag' }} {...register(`tags.${idx}.value`)}>
-                <option value=""> </option>
-                <option value="work">Work</option>
-                <option value="study">Study</option>
-              </SelectStyled>
-              <InputerrorStyled>{errors.deadline?.message}</InputerrorStyled>
-            </InputBlock>
-          ))}
-
-          <ButtonStyled
-            style={{ width: '50px' }}
-            type="button"
-            onClick={() => append({ value: '' })}
-          >
-            Add tag
-          </ButtonStyled>
+          <InputBlock>
+            <InputLabelStyled>Tags</InputLabelStyled>
+            <MultichoiceDropdown
+              items={Object.fromEntries(Tags.map((tag) => [tag.name, tag.slug]))}
+              setParentState={setTags}
+              initialState={tags}
+              autoheader="values"
+              header="None selected"
+            />
+            <InputerrorStyled>{errors.tags}</InputerrorStyled>
+          </InputBlock>
 
           <InputBlock
             style={{
@@ -183,7 +173,7 @@ const TodoForm: React.FC = () => {
                 gridColumnEnd: 3,
               }}
               type="submit"
-              disabled={!isDirty || !isValid}
+              disabled={!isValid}
             >
               Submit
             </SubmitStyled>
