@@ -4,14 +4,14 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import DeleteIcon from '../../../components/icons/DeleteIcon';
 import EditIcon from '../../../components/icons/EditIcon';
-import TodoStatusIcon from '../../../components/icons/TodoStatusIcon';
 import Tag from '../../../components/Tag/Tag';
 import { Todo } from '../../../data/slices/todos/models';
-import { deleteTodoAction } from '../../../data/slices/todos/todosSlice';
+import { deleteTodoAction, patchTodoAction } from '../../../data/slices/todos/todosSlice';
 import { useTypedSelector } from '../../../store/hooks';
 import { Tags } from '../../../store/models';
 import { RootState } from '../../../store/store';
 import { IconCellStyled, TodosCellStyled, TodosRowStyled } from './styled/TodosList.styled';
+import TodoStatusToggle from './TodoStatusToggle';
 
 interface Props {
   todo: Todo;
@@ -30,7 +30,7 @@ const ListItem: React.FC<Props> = ({ todo }) => {
   return (
     <TodosRowStyled>
       <TodosCellStyled>
-        <TodoStatusIcon completed={todo.status === 'DONE'} />
+        <TodoStatusToggle todo={todo} />
       </TodosCellStyled>
       <TodosCellStyled>{todo.name}</TodosCellStyled>
       <TodosCellStyled>{dayjs(todo.deadline).format('DD/MM/YYYY')}</TodosCellStyled>
