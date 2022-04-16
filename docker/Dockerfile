@@ -5,7 +5,7 @@ RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 WORKDIR /home/node/app
 
 # Copy package.json and package-lock.json
-COPY --chown=node:node package*.json ./
+COPY --chown=node:node ./package*.json ./
 
 # Install dependencies
 USER node
@@ -22,6 +22,9 @@ RUN npm run build
 
 
 FROM nginx:alpine
+
+# Copy the nginx config
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 
 # Copy the built project to the directory served by nginx
 COPY --from=builder /home/node/app/build /usr/share/nginx/html
