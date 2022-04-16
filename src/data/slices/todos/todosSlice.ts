@@ -89,6 +89,7 @@ const todosSlice = createSlice({
       state.todoPatchingStatus = 'idle';
       state.todoCreatingStatus = 'idle';
     },
+    resetTodos: () => initialState,
   },
   extraReducers(builder) {
     builder
@@ -143,6 +144,6 @@ const todosSlice = createSlice({
   },
 });
 
-export const { resetTodoEditForm } = todosSlice.actions;
+export const { resetTodoEditForm, resetTodos } = todosSlice.actions;
 
 export default todosSlice.reducer;
