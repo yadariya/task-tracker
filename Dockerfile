@@ -14,6 +14,9 @@ RUN npm install
 # Copy & chown all the other files
 COPY --chown=node:node . .
 
+# Load api server name
+ARG API_ROOT
+
 # Build the project
 RUN npm run build
 

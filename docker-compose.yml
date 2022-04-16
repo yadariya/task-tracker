@@ -2,6 +2,10 @@ version: '3.9'
 services:
   web:
     image: "task-tracker-frontend"
-    build: ./
+    build:
+      context: ./
+      args:
+        # - API_ROOT=https://www.example.com
     ports:
       - 8080:80
+    restart: unless-stopped
