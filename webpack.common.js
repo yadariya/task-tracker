@@ -7,18 +7,8 @@ dotenv.config();
 
 module.exports = {
   entry: './src/index.tsx',
-  output: {
-    path: path.join(__dirname, 'build'),
-    filename: 'index.bundle.js',
-    publicPath: '/',
-  },
-  mode: process.env.NODE_ENV || 'development',
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
-  },
-  devServer: {
-    static: path.join(__dirname, 'src'),
-    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -50,4 +40,10 @@ module.exports = {
       'process.env': JSON.stringify(process.env),
     }),
   ],
+  output: {
+    path: path.join(__dirname, 'build'),
+    filename: 'index.bundle.js',
+    publicPath: '/',
+    clean: true,
+  },
 };
