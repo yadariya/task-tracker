@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { useForm, useFieldArray } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   InputStyled,
@@ -10,7 +10,7 @@ import {
   TextAreaStyled,
 } from '../../components/Form/styled/Input.styled';
 import { BoxStyled } from '../../components/Layout/Box.styled';
-import PageHeadingStyled from '../../components/Typography/PageHeading';
+import PageHeadingStyled from '../../components/Typography/PageHeading.styled';
 import { FormStyled, SubmitStyled, TodoFormHeaderStyled } from './styled/TodoForm.styled';
 import { LayoutContentsStyled } from '../../components/Layout/styled/MainLayout.styled';
 import {
@@ -48,10 +48,9 @@ const TodoForm: React.FC = () => {
 
   const {
     register,
-    control,
     handleSubmit,
     setValue,
-    formState: { errors, isValid, isDirty },
+    formState: { errors, isValid },
   } = useForm<Todo>({
     mode: 'onChange',
     defaultValues,

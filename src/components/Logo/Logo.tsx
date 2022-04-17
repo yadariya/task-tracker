@@ -1,5 +1,5 @@
 import React from 'react';
-import { LogoFont, BigLogoFont } from '../Typography/Logo';
+import { LogoFont, BigLogoFont } from './styled/LogoFont.styled';
 import LogoIcon from './LogoIcon';
 import { LogoIconWrapper, LogoWrapper } from './styled/Logo.styled';
 

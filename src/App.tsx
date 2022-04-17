@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Navigate, Route, Routes, RouteMatch } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import LoginLayout from './components/Layout/LoginLayout';
 import MainLayout from './components/Layout/MainLayout';
 import Login from './pages/authentication/Login/Login';

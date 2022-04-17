@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const CodeLine = styled.code`
+const CodeLineStyled = styled.code`
   font-family: 'Courier New', Courier, monospace;
   font-size: 1rem;
   padding: 0.1em 0.3em;
@@ -11,4 +11,4 @@ const CodeLine = styled.code`
 }
 `;
 
-export default CodeLine;
+export default CodeLineStyled;

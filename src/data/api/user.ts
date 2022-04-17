@@ -24,7 +24,7 @@ export const confirmUserCreation = async (
   return res.data;
 };
 
-export const resetPassword = async (username: string, email: string) => {
+export const resetPassword = async (email: string) => {
   const res = await axios.post(`${API_ROOT}/users/password/reset`, { email });
   return res.data;
 };

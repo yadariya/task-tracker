@@ -38,18 +38,12 @@ interface AuthPayload<T> {
 
 export const fetchTodosAction = createAsyncThunk(
   'todos/fetch',
-  async ({ token }: AuthPayload<undefined>) => {
-    const data = await fetchTodos(token);
-    return data;
-  },
+  async ({ token }: AuthPayload<undefined>) => fetchTodos(token),
 );
 
 export const fetchTodoAction = createAsyncThunk(
   'todo/fetch',
-  async ({ token, data }: AuthPayload<string>) => {
-    const res = await fetchTodo(token, data);
-    return res;
-  },
+  async ({ token, data }: AuthPayload<string>) => fetchTodo(token, data),
 );
 
 export const patchTodoAction = createAsyncThunk(

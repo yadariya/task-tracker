@@ -2,7 +2,7 @@
 // Performs on slices instead of complete store
 
 export function useStorage<T>(key: string): [() => T | null, (slice: T) => void] {
-  const loadSlice = (key: string) => {
+  const loadSlice = () => {
     const savedData = localStorage.getItem(key);
     if (!savedData) {
       return null;
@@ -17,7 +17,7 @@ export function useStorage<T>(key: string): [() => T | null, (slice: T) => void]
     }
   };
 
-  const saveSlice = (key: string, slice: T) => {
+  const saveSlice = (slice: T) => {
     if (slice === currentState) {
       return;
     }
@@ -27,5 +27,5 @@ export function useStorage<T>(key: string): [() => T | null, (slice: T) => void]
   };
 
   let currentState: T | null = null;
-  return [() => loadSlice(key), (slice: T) => saveSlice(key, slice)];
+  return [loadSlice, saveSlice];
 }

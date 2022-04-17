@@ -13,7 +13,7 @@ import { RootState } from '../../../store/store';
 import { useState } from 'react';
 import { changeUserInfo } from '../../../data/api/user';
 import { setUserInfo, UserInfoState } from '../../../data/slices/user/userInfoSlice';
-import CodeLine from '../../Typography/CodeLine';
+import CodeLineStyled from '../../Typography/CodeLine.styled';
 
 type UserInfoFormFieldName = keyof Omit<UserInfoState, 'id'>;
 
@@ -95,7 +95,7 @@ const UserInfoForm: React.FC = () => {
       {inputs}
       {formError && (
         <FormErrorStyled>
-          Error: <CodeLine>{formError}</CodeLine>
+          Error: <CodeLineStyled>{formError}</CodeLineStyled>
         </FormErrorStyled>
       )}
       {success && <FormSuccessStyled>Data has been updated!</FormSuccessStyled>}
