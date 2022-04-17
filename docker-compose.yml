@@ -1,13 +1,12 @@
 version: '3.9'
 services:
-  node:
+  web:
     image: "task-tracker-frontend"
-    build: ./
-    user: "node"
-    working_dir: /home/node/app
-    environment:
-      - NODE_ENV=production
-      # - API_ROOT=https://example.com
+    build:
+      dockerfile: ./docker/Dockerfile
+      context: ./
+      args:
+        # - API_ROOT=https://example.com
     ports:
-      - 8080:8080
-    command: "npm start"
+      - 8080:80
+    restart: unless-stopped

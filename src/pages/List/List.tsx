@@ -18,7 +18,7 @@ const List: React.FC = () => {
     if (fetchingStatus === 'idle' && token) {
       dispatch(fetchTodosAction({ token, data: undefined }));
     }
-  }, [fetchingStatus]);
+  }, []);
 
   return (
     <LayoutContentsStyled>
