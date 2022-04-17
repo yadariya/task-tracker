@@ -60,19 +60,26 @@ const MultichoiceDropdown: React.FC<DropdownProps> = ({
         : window.removeEventListener('click', close))();
   });
 
+  const getHeader = () => {
+    switch (autoheader) {
+      case 'count':
+        return `${selected.length} selected`;
+      case 'values':
+        return (
+          Object.entries(items)
+            .filter(([_, slug]) => selected.includes(slug))
+            .map(([name, _]) => name)
+            .join(', ') || header
+        );
+      default:
+        return header;
+    }
+  };
+
   return (
     <DropdownStyled onClick={handleHeaderClick}>
       <FlexRow justify="space-between" align="center" height="100%">
-        <DropdownHeaderStyled>
-          {autoheader === 'count'
-            ? `${selected.length} selected`
-            : autoheader === 'values'
-            ? Object.entries(items)
-                .filter(([_, slug]) => selected.includes(slug))
-                .map(([name, _]) => name)
-                .join(', ') || header
-            : header}
-        </DropdownHeaderStyled>
+        <DropdownHeaderStyled>{getHeader()}</DropdownHeaderStyled>
         <ArrowDownIcon />
       </FlexRow>
       {isOpened && (

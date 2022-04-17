@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { LayoutContentsStyled } from '../../components/Layout/styled/MainLayout.styled';
-import PageHeadingStyled from '../../components/Typography/PageHeading';
+import PageHeadingStyled from '../../components/Typography/PageHeading.styled';
 import { selectAllTodos, selectTodosFetchingStatus } from '../../data/slices/todos/selectors';
 import { fetchTodosAction } from '../../data/slices/todos/todosSlice';
 import { useTypedSelector } from '../../store/hooks';

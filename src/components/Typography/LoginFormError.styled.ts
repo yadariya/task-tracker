@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import LoginFormFootnote from './LoginFormFootnote';
+import LoginFormFootnote from './LoginFormFootnote.styled';
 
 const LoginFormErrorStyled = styled(LoginFormFootnote)`
   color: #f00;

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { changePassword } from '../../../data/api/user';
 import { RootState } from '../../../store/store';
 import { InputStyled, InputLabelStyled, InputBlock } from '../../Form/styled/Input.styled';
-import CodeLine from '../../Typography/CodeLine';
+import CodeLineStyled from '../../Typography/CodeLine.styled';
 import {
   SettingsFormStyled,
   FieldErrorStyled,
@@ -90,7 +90,7 @@ const PasswordChangeForm: React.FC = () => {
       </InputBlock>
       {formError && (
         <FormErrorStyled>
-          Error: <CodeLine>{formError}</CodeLine>
+          Error: <CodeLineStyled>{formError}</CodeLineStyled>
         </FormErrorStyled>
       )}
       {success && <FormSuccessStyled>Password changed successfully!</FormSuccessStyled>}

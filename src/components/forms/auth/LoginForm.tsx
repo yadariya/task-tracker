@@ -3,10 +3,10 @@ import { Link, Navigate } from 'react-router-dom';
 import { LoginInputStyled } from '../../Form/styled/Input.styled';
 import { LoginButtonStyled } from '../../Form/styled/Button.styled';
 import { FlexColumn } from '../../Layout/Flexbox.styled';
-import LoginFormHeading from '../../Typography/LoginFormHeading';
-import LoginFormFootnote from '../../Typography/LoginFormFootnote';
+import LoginFormHeading from '../../Typography/LoginFormHeading.styled';
+import LoginFormFootnote from '../../Typography/LoginFormFootnote.styled';
 import { logIn } from '../../../data/slices/user/authenticationSlice';
-import LoginFormErrorStyled from '../../Typography/LoginFormError';
+import LoginFormErrorStyled from '../../Typography/LoginFormError.styled';
 import { store } from '../../../store/store';
 import { authenticateUser } from '../../../data/api/user';
 

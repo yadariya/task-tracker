@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { BoxStyled } from '../../components/Layout/Box.styled';
 import { LayoutContentsStyled } from '../../components/Layout/styled/MainLayout.styled';
-import CodeLine from '../../components/Typography/CodeLine';
-import PageHeadingStyled from '../../components/Typography/PageHeading';
+import CodeLineStyled from '../../components/Typography/CodeLine.styled';
+import PageHeadingStyled from '../../components/Typography/PageHeading.styled';
 import { confirmEmailChange } from '../../data/api/user';
 import { RootState } from '../../store/store';
 import { SettingsHeaderStyled } from './styled/Settings.styled';
@@ -16,8 +16,8 @@ const ChangeEmail: React.FC = () => {
   const confirmation = searchParams.get('token');
 
   if (confirmation) {
-    confirmEmailChange(token!, confirmation).catch((error) =>
-      setError(error.response?.data.detail || 'An unknown error occured.'),
+    confirmEmailChange(token!, confirmation).catch((err) =>
+      setError(err.response?.data.detail || 'An unknown error occured.'),
     );
   }
 
@@ -39,7 +39,7 @@ const ChangeEmail: React.FC = () => {
           <>
             <p>Cannot update your email.</p>
             <p>
-              Details: <CodeLine>{error}</CodeLine>
+              Details: <CodeLineStyled>{error}</CodeLineStyled>
             </p>
           </>
         ) : (

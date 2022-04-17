@@ -6,7 +6,7 @@ import DeleteIcon from '../../../components/icons/DeleteIcon';
 import EditIcon from '../../../components/icons/EditIcon';
 import Tag from '../../../components/Tag/Tag';
 import { Todo } from '../../../data/slices/todos/models';
-import { deleteTodoAction, patchTodoAction } from '../../../data/slices/todos/todosSlice';
+import { deleteTodoAction } from '../../../data/slices/todos/todosSlice';
 import { useTypedSelector } from '../../../store/hooks';
 import { Tags } from '../../../store/models';
 import { RootState } from '../../../store/store';
